@@ -5,8 +5,21 @@ namespace App\Entity;
 use App\Repository\AnnoncesRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\Mapping\Annotation\slug;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Get;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: AnnoncesRepository::class)]
+#[ApiResource(
+    operations:[
+        new Get(),
+        new GetCollection()
+    ]
+   
+)]
 class Annonces
 {
     #[ORM\Id]
@@ -39,12 +52,15 @@ class Annonces
     private ?string $description = null;
 
     #[ORM\Column]
+    #[Gedmo\Timestampable(on: 'create')]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column]
+    #[Gedmo\Timestampable(on: 'update')]
     private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\Column(length: 255)]
+    #[Gedmo\Slug(fields: ['title'])]
     private ?string $slug = null;
 
     #[ORM\OneToOne(mappedBy: 'annonce', cascade: ['persist', 'remove'])]
