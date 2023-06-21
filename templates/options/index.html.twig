@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello OptionsController!{% endblock %}
+
+{% block body %}
+<h1 class="text-center mt-5 mb-5">Ajouter des options</h1>
+<div class="container">
+{{form_start (optionForm)}}
+<div class="row">
+
+ <div class="col-4">
+{{form_row(optionForm.gps)}}
+</div>
+
+<div class="col-4">
+{{form_row(optionForm.regulateur)}}
+</div>
+
+<div class="col-4">
+{{form_row(optionForm.limitateur)}}
+</div>
+
+<div class="col-4">
+{{form_row(optionForm.clim)}}
+</div>
+<div class="col-4">
+{{form_row(optionForm.sfu)}}
+</div>
+<div class="col-4">
+{{form_row(optionForm.sac)}}
+</div>
+<div class="col-4">
+{{form_row(optionForm.bluetooth)}}
+</div>
+<div class="col-4">
+{{form_row(optionForm.camera)}}
+</div>
+<div class="col-4">
+{{form_row(optionForm.sas)}}
+</div>
+<div class="col-4">
+{{form_row(optionForm.annonce)}}
+</div>
+  </div>
+</div>
+{{ form_end(optionForm) }}
+{% endblock %}

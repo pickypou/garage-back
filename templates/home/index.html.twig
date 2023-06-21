@@ -3,6 +3,11 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-<h1 class="text-center mt-5 mb-5">Bonjour </h1>
+<h1 class="text-center mt-5 mb-5">Bonjour {{app.user.fristname}} </h1>
+<div class="d-flex justify-content-around">
+<a href="{{path('app_create_annonces')}}">Créer une annonce</a>
+<a href="{{path('app_annonces_list')}}">Liste des annonces</a>
 
+
+</div>
 {% endblock %}

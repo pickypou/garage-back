@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des annonces{% endblock %}
+
+{% block body %}
+<h1>Liste des annonces mises en ligne</h1>
+{% for annonce in annonces %}
+
+<div class="card w-25">
+  <div class="card-body text-center">
+    <h5 class="card-title">{{ annonce.title }}</h5>
+     <p class="card-text">REF: {{ annonce.id }}</p>
+    <p class="card-text">{{ annonce.brand }}</p>
+    <p class="card-text">{{ annonce.model }}</p>
+    <a href="{{path('app_options',{'id':annonce.id})}}"class="btn btn-secondary">Les options</a> 
+  </div>
+</div>
+    
+{% endfor %}
+
+{% endblock %}
