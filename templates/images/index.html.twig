@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ImagesController!{% endblock %}
+
+{% block body %}
+<h1 class="text-center mt-5 mb-5">Ajouté les images</h1>
+
+<div class="container">
+{{form_start (imageForm)}}
+<div class="row">
+
+ <div class="col-4">
+{{form_row(imageForm.imgUne)}}
+</div>
+
+<div class="col-4">
+{{form_row(imageForm.imgDeux)}}
+</div>
+
+<div class="col-4">
+{{form_row(imageForm.imgTrois)}}
+</div>
+
+<div class="col-4">
+{{form_row(imageForm.imgQuatre)}}
+</div>
+
+{{form_row(imageForm.imgCinq)}}
+</div>
+
+<div class="col-4">
+{{form_row(imageForm.imgSix)}}
+</div>
+
+<div class="col-4">
+{{form_row(imageForm.annonce)}}
+</div>
+  </div>
+</div>
+{{ form_end(imageForm) }}
+{% endblock %}
