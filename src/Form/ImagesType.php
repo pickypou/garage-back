@@ -124,7 +124,10 @@ class ImagesType extends AbstractType
                 ])
 
                 ->add('submit',SubmitType::class,[
-                    'label'=>'ajouté les image'
+                    'label'=>'ajouté les image',
+                    'attr' => [
+                        'class' => 'btn-custom btn-secondary col-4 ms-5', // Ajoutez la classe CSS personnalisée ici
+                    ]
                 ])
         ;
     }

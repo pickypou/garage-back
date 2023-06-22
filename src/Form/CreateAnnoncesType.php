@@ -83,7 +83,10 @@ class CreateAnnoncesType extends AbstractType
             ->add('options')
             ->add('images')
             ->add('submit', SubmitType::class,[
-                'label'=>'Poster l\'annonce'
+                'label'=>'Poster l\'annonce', 
+                'attr' => [
+                    'class' => 'btn-custom btn-secondary col-4 ms-5', // Ajoutez la classe CSS personnalisée ici
+                ]
             ])
             ;
     }
