@@ -1,12 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}garage V.perrot{% endblock %}
 
 {% block body %}
-<h1 class="text-center mt-5 mb-5">Bonjour {{app.user.fristname}} </h1>
+{% if app.user %}
+    <h1 class="text-center mt-5 mb-5">Bienvenue, {{ app.user.fristname }} !</h1>
+    {% else %}
+    <h1 class="text-center mt-5 mb-5">Bonjour  </h1>
+{% endif %}
+
 <div class="d-flex justify-content-around">
+
+{% if app.user %}
+    {# L'utilisateur est connecté #}
+    <a href="{{ path('app_logout') }}">Déconnexion</a>
 <a href="{{path('app_create_annonces')}}">Créer une annonce</a>
 <a href="{{path('app_annonces_list')}}">Liste des annonces</a>
+
+    {# Ajoutez ici les autres liens pour l'utilisateur connecté #}
+{% else %}
+    {# L'utilisateur n'est pas connecté #}
+    <a href="{{ path('app_login') }}">Connexion</a>
+{% endif %}
+{% if is_granted("ROLE_ADMIN") %}
+    <a href="{{ path('app_register')}}">Je crée un compte</a>
+{% endif %}
+
 
 </div>
 {% endblock %}

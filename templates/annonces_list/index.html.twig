@@ -3,23 +3,24 @@
 {% block title %}Liste des annonces{% endblock %}
 
 {% block body %}
-<h1>Liste des annonces mises en ligne</h1>
-{% for annonce in annonces %}
+    <h1 class="mt-5 mb-5 text-center">Liste des annonces mises en ligne</h1>
+    <div class="row">
+        {% for annonce in annonces %}
+            <div class="col-md-4 d-flex justify-content-around">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{ annonce.title }}</h5>
+                        <p class="card-text">REF: {{ annonce.id }}</p>
+                        <p class="card-text">{{ annonce.brand }}</p>
+                        <p class="card-text">{{ annonce.model }}</p>
+                        <a href="{{ path('app_options', {'id': annonce.id}) }}" class="btn btn-secondary">Les options</a> 
+                        <a href="{{ path('app_images', {'id': annonce.id}) }}" class="btn btn-secondary">Ajouter les images</a>
+                        <a href="{{ path('app_annonce_detail', {'id': annonce.id}) }}" class="btn btn-secondary">Vérifier mon annonce</a>
 
-<div class="card w-25">
-  <div class="card-body text-center">
-    <h5 class="card-title">{{ annonce.title }}</h5>
-     <p class="card-text">REF: {{ annonce.id }}</p>
-    <p class="card-text">{{ annonce.brand }}</p>
-    <p class="card-text">{{ annonce.model }}</p>
-    <a href="{{path('app_options',{'id':annonce.id})}}"class="btn btn-secondary">Les options</a> 
-    <a href="{{path('app_images',{'id':annonce.id})}}" class="btn btn-secondary">ajouté les images</a>
-      <a href="{{path('app_annonce_detail',{'id':annonce.id})}}" class="btn btn-secondary">Vérifier mon annonce</a>
-    
-
-  </div>
-</div>
-    
-{% endfor %}
-
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <a href="{{ path('app_home')}}" class="btn btn-secondary">retour a l'accueil</a>
 {% endblock %}

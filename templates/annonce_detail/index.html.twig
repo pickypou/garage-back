@@ -6,16 +6,22 @@
     <h1 class="text-center mt-5 mb-5">{{annonce.title}}</h1>
 
     <div class="card mx-auto" style="width: 40rem;">
+    <style>
+    .carousel-item img {
+        width: 100%;
+        height: auto;
+    }
+</style>
         <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">
     <div class="carousel-item active">
-        <img src="{{ asset('uploads/images/' ~ annonce.images.imgUne) }}" class ="img-fluid" alt="image">
+        <img src="{{ asset('uploads/images/' ~ annonce.images.imgUne) }}" class ="img-fluid d-block" alt="image">
     </div>
     <div class="carousel-item">
-        <img src="{{ asset('uploads/images/' ~ annonce.images.imgDeux) }}" class ="img-fluid" alt="image">
+        <img src="{{ asset('uploads/images/' ~ annonce.images.imgDeux) }}" class ="img-fluid d-block" alt="image">
     </div>
     <div class="carousel-item">
-        <img src="{{ asset('uploads/images/' ~ annonce.images.imgTrois) }}" class ="img-fluid" alt="image">
+        <img src="{{ asset('uploads/images/' ~ annonce.images.imgTrois) }}" class ="img-fluid d-block" alt="image">
     </div>
     <div class="carousel-item">
         <img src="{{ asset('uploads/images/' ~ annonce.images.imgQuatre) }}" class ="img-fluid" alt="image">
@@ -40,6 +46,7 @@
         <h2 class="text-center"> Pirx: {{ annonce.price }} €</h2>
         <h3 class="text-center">Année: {{ annonce.year }}</h3>
         <div class="card-body">
+       <p class="card-text">REF: {{ annonce.id }}</p>
          <p class="card-text">{{ annonce.description }}</p>
           <div class="row">
         <div class="mx-auto">
@@ -89,9 +96,11 @@
 
 
       </table>
+      <a href="{{path('app_annonces_list')}}" class="text-center btn btn-secondary">retour a la liste des annonces</a>
         </div>
     </div>
 </div>
 
     </div>
+    
 {% endblock %}

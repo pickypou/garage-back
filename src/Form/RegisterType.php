@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use LengthException;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -29,7 +30,7 @@ class RegisterType extends AbstractType
                 'label'=>'email'
             ]
             )
-            ->add('roles',)
+            ->add('roles')
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'Le mot de passe et la confirmation doivent être identique.',

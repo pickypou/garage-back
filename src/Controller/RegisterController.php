@@ -10,7 +10,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+//#[IsGranted('ROLE_ADMIN')]
 class RegisterController extends AbstractController
 {
     private $entityManager;
@@ -24,7 +26,7 @@ class RegisterController extends AbstractController
         $user = new User();
 
         $registerForm = $this->createForm(RegisterType::class,$user);
-        $registerForm->remove('roles');
+       $registerForm->remove('roles');
         $registerForm->handleRequest($request);
 
         if ($registerForm->isSubmitted() && $registerForm->isValid()) {
@@ -36,6 +38,7 @@ class RegisterController extends AbstractController
 
            $this->entityManager->persist($user);
            $this->entityManager->flush();
+           return $this->redirectToRoute('app_home');
         }
         return $this->render('register/index.html.twig', [
            'registerForm'=>$registerForm->createView(),
