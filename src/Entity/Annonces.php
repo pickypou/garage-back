@@ -12,11 +12,13 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Get;
 use Symfony\Component\Serializer\Annotation\Groups;
 
+
 #[ORM\Entity(repositoryClass: AnnoncesRepository::class)]
 #[ApiResource(
     operations:[
         new Get(),
-        new GetCollection()
+        new GetCollection(),
+       
     ]
    
 )]

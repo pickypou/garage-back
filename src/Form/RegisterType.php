@@ -55,7 +55,7 @@ class RegisterType extends AbstractType
             ->add('submit', SubmitType::class,[
                 'label'=>"Enregistré",
                 'attr' => [
-                    'class' => 'btn-custom btn-secondary col-4 ms-5', // Ajoutez la classe CSS personnalisée ici
+                    'class' => 'btn-custom btn-outline-secondary col-4 ms-5', // Ajoutez la classe CSS personnalisée ici
                 ]
             ]);
     }

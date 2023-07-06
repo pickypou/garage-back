@@ -13,17 +13,17 @@
 
 {% if app.user %}
     {# L'utilisateur est connecté #}
-    <a href="{{ path('app_logout') }}">Déconnexion</a>
-<a href="{{path('app_create_annonces')}}">Créer une annonce</a>
-<a href="{{path('app_annonces_list')}}">Liste des annonces</a>
+    <a href="{{ path('app_logout') }}" class="btn btn-outline-secondary">Déconnexion</a>
+<a href="{{path('app_create_annonces')}}" class="btn btn-outline-secondary">Créer une annonce</a>
+<a href="{{path('app_annonces_list')}}" class="btn btn-outline-secondary">Liste des annonces</a>
 
     {# Ajoutez ici les autres liens pour l'utilisateur connecté #}
 {% else %}
     {# L'utilisateur n'est pas connecté #}
-    <a href="{{ path('app_login') }}">Connexion</a>
+    <a href="{{ path('app_login') }}" class="btn btn-outline-secondary">Connexion</a>
 {% endif %}
 {% if is_granted("ROLE_ADMIN") %}
-    <a href="{{ path('app_register')}}">Je crée un compte</a>
+    <a href="{{ path('app_register')}}" class="btn btn-outline-secondary">Je crée un compte</a>
 {% endif %}
 
 

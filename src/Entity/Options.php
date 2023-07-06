@@ -4,8 +4,18 @@ namespace App\Entity;
 
 use App\Repository\OptionsRepository;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Get;
 
 #[ORM\Entity(repositoryClass: OptionsRepository::class)]
+#[ApiResource(
+    operations:[
+        new Get(),
+        new GetCollection()
+    ]
+   
+)]
 class Options
 {
     #[ORM\Id]
