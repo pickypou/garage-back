@@ -22,8 +22,16 @@ final class Version20230620074412 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE TABLE `user` (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(180) NOT NULL, roles LONGTEXT NOT NULL COMMENT \'(DC2Type:json)\', password VARCHAR(255) NOT NULL, fristname VARCHAR(255) NOT NULL, lastname VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
 
-       
+        $password = password_hash('motdepasse', PASSWORD_DEFAULT);
+        $this->addSql("INSERT INTO `user` (email, roles, password, firstname, lastname) VALUES ('ludo@ludo.com', '[\"ROLE_ADMIN\"]', '$password', 'Ludovic', 'Spysschaert')");
+  
     }
+    public function postUp(Schema $schema): void
+{
+    // Crée le compte administrateur
+    $password = password_hash('motdepasse', PASSWORD_DEFAULT);
+    $this->addSql("INSERT INTO `user` (email, roles, password, firstname, lastname) VALUES ('ludo@ludo.com', '[\"ROLE_ADMIN\"]', '$password', 'Ludovic', 'Spysschaert')");
+}
 
     public function down(Schema $schema): void
     {
