@@ -4,6 +4,7 @@
 
 {% block body %}
     <h1 class="text-center mt-5 mb-5">{{annonce.title}}</h1>
+     
 
     <div class="card mx-auto" style="width: 40rem;">
     <style>
@@ -93,14 +94,15 @@
          <td>aide au stationnement</td>
         <td>{{ annonce.options.sas}} </td>
         </tr>
-
-
       </table>
-      <a href="{{path('app_annonces_list')}}" class="text-center btn btnbtn-outline-secondary">retour a la liste des annonces</a>
+      <div class="d-flex jutify-content-center">
+      <a href="{{path('app_annonces_list')}}" class="text-center btn btnbtn-outline-secondary mt-5">retour a la liste des annonces</a>
+      </div>
+      
         </div>
     </div>
 </div>
 
     </div>
-    
+   
 {% endblock %}
