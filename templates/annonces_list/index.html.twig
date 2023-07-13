@@ -6,17 +6,24 @@
     <h1 class="mt-5 mb-5 text-center">Liste des annonces mises en ligne</h1>
     <div class="row">
         {% for annonce in annonces %}
-            <div class="col-md-4 d-flex justify-content-around">
+            <div class="col-md-2 d-flex justify-content-around">
                 <div class="card">
                     <div class="card-body text-center">
                         <h5 class="card-title">{{ annonce.title }}</h5>
                         <p class="card-text">REF: {{ annonce.id }}</p>
                         <p class="card-text">{{ annonce.brand }}</p>
                         <p class="card-text">{{ annonce.model }}</p>
-                        <a href="{{ path('app_options', {'id': annonce.id}) }}" class="btn btn-secondary">Les options</a> 
-                        <a href="{{ path('app_images', {'id': annonce.id}) }}" class="btn btn-secondary">Ajouter les images</a>
-                        <a href="{{ path('app_annonce_detail', {'id': annonce.id}) }}" class="btn btn-secondary">Vérifier mon annonce</a>
 
+                       
+                        <div class="row d-flex justify-content-around">
+                        <a href="{{ path('app_options', {'id': annonce.id}) }}" class="btn btn-outline-secondary mt-2 mb-1">Les options</a> 
+                        <a href="{{ path('app_images', {'id': annonce.id}) }}" class="btn btn-outline-secondary mt-2 mb-1">Ajouter les images</a>
+                        <a href="{{ path('app_annonce_detail', {'id': annonce.id}) }}" class="btn btn-outline-secondary mt-2 mb-1">Vérifier mon annonce</a>
+                        <form action="{{ path('app_remove_annonce', {'id': annonce.id}) }}" method="post">
+    <button type="submit" class="btn btn-outline-danger mt-2 mb-1">Supprimer l'annonce</button>
+</form>
+                            
+                        </div>
                     </div>
                 </div>
             </div>

@@ -18,7 +18,7 @@ class ImagesType extends AbstractType
     {
         $builder
             ->add('imgUne',FileType::class, [
-                'label' => 'Image une)',
+                'label' => 'Image une',
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
@@ -35,7 +35,7 @@ class ImagesType extends AbstractType
                 ],
             ])
             ->add('imgDeux', FileType::class,[
-                'label' => 'Image une)',
+                'label' => 'Image deux',
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
@@ -52,7 +52,7 @@ class ImagesType extends AbstractType
                 ],
             ])
             ->add('imgTrois', FileType::class,[
-                'label' => 'Image une)',
+                'label' => 'Image trois',
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
@@ -68,7 +68,7 @@ class ImagesType extends AbstractType
                     ])
                 ],])
             ->add('imgQuatre', FileType::class,[
-                'label' => 'Image une)',
+                'label' => 'Image quatre',
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
@@ -84,7 +84,7 @@ class ImagesType extends AbstractType
                     ])
                 ],])
             ->add('imgCinq', FileType::class,[
-                'label' => 'Image une)',
+                'label' => 'Image cinq',
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
@@ -95,12 +95,13 @@ class ImagesType extends AbstractType
                             'image/jpeg',
                             'image/png',
                             'image/jpg',
+                            'image/web'
                         ],
                         'mimeTypesMessage' => 'Please upload a valid Image',
                     ])
                 ],])
             ->add('imgSix', FileType::class,[
-                'label' => 'Image une)',
+                'label' => 'Image six',
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [

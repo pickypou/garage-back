@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}list-des-commantaires{% endblock %}
+
+{% block body %}
+ <h1 class="mt-5 mb-5 text-center">Liste des commantaires</h1>
+ <div class="row">
+{% for comments in commentsLists %}
+ <div class="col-md-2 d-flex justify-content-around">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{ comments.title }}</h5>
+                        <p class="card-text"> {{ comment.description }}</p>
+                         <form action="{{ path('app_remove_comments', {'id': annonce.id}) }}" method="post">
+    <button type="submit" class="btn btn-outline-danger mt-2 mb-1">Supprimer l'annonce</button>
+</form>
+                        </div>
+                        </div>
+    
+{% endfor %}
+ </div>
+{% endblock %}
