@@ -10,7 +10,7 @@ use Gedmo\Mapping\Annotation\slug;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Get;
-use Symfony\Component\Serializer\Annotation\Groups;
+
 
 
 #[ORM\Entity(repositoryClass: AnnoncesRepository::class)]
