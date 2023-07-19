@@ -46,16 +46,16 @@ class CreateAnnoncesController extends AbstractController
 
                 
             if ($imgUne) {
-                $annonce->setimgUne($imgUne->getAbsolutePath());
+                $annonce->setimgUne($uploaderService->uploadFile($imgUne, $this->imagesDirectory));
             }
             if ($imgDeux) {
-                $annonce->setImgDeux($imgDeux->getAbsolutePath());
+                $annonce->setImgDeux($uploaderService->uploadFile($imgDeux, $this->imagesDirectory));
             }
             if ($imgTrois) {
-                $annonce->setimgTrois($imgTrois->getAbsolutePath());
+                $annonce->setImgTrois($uploaderService->uploadFile($imgTrois, $this->imagesDirectory));
             }
             if ($imgQuatre) {
-                $annonce->setimgQuatre($imgQuatre->getAbsolutePath());
+                $annonce->setImgQuatre($uploaderService->uploadFile($imgQuatre, $this->imagesDirectory));
             }
             $annonce = $annonceForm->getData();
 
