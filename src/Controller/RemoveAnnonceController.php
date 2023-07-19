@@ -28,6 +28,6 @@ class RemoveAnnonceController extends AbstractController
         $this->entityManager->remove($annonceRemove);
         $this->entityManager->flush();
 
-        return $this->redirectToRoute('app_annonce_list');
+        return $this->redirectToRoute('app_annonces_list');
     }
 }

@@ -68,8 +68,19 @@ class Annonces
     #[ORM\OneToOne(mappedBy: 'annonce', cascade: ['persist', 'remove'])]
     private ?Options $options = null;
 
-    #[ORM\OneToOne(mappedBy: 'annonce', cascade: ['persist', 'remove'])]
-    private ?Images $images = null;
+    #[ORM\Column(length: 255)]
+    private ?string $imgUne = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $imgDeux = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $imgTrois = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $imgQuatre = null;
+
+    
 
     public function getId(): ?int
     {
@@ -225,20 +236,54 @@ class Annonces
         return $this;
     }
 
-    public function getImages(): ?Images
+    public function getImgUne(): ?string
     {
-        return $this->images;
+        return $this->imgUne;
     }
 
-    public function setImages(Images $images): static
+    public function setImgUne(string $imgUne): static
     {
-        // set the owning side of the relation if necessary
-        if ($images->getAnnonce() !== $this) {
-            $images->setAnnonce($this);
-        }
-
-        $this->images = $images;
+        $this->imgUne = $imgUne;
 
         return $this;
     }
+
+    public function getImgDeux(): ?string
+    {
+        return $this->imgDeux;
+    }
+
+    public function setImgDeux(string $imgDeux): static
+    {
+        $this->imgDeux = $imgDeux;
+
+        return $this;
+    }
+
+    public function getImgTrois(): ?string
+    {
+        return $this->imgTrois;
+    }
+
+    public function setImgTrois(string $imgTrois): static
+    {
+        $this->imgTrois = $imgTrois;
+
+        return $this;
+    }
+
+    public function getImgQuatre(): ?string
+    {
+        return $this->imgQuatre;
+    }
+
+    public function setImgQuatre(string $imgQuatre): static
+    {
+        $this->imgQuatre = $imgQuatre;
+
+        return $this;
+    }
+
+    
+       
 }

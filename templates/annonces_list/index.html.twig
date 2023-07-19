@@ -17,7 +17,7 @@
                        
                         <div class="row d-flex justify-content-around">
                         <a href="{{ path('app_options', {'id': annonce.id}) }}" class="btn btn-outline-secondary mt-2 mb-1">Les options</a> 
-                        <a href="{{ path('app_images', {'id': annonce.id}) }}" class="btn btn-outline-secondary mt-2 mb-1">Ajouter les images</a>
+                       
                         <a href="{{ path('app_annonce_detail', {'id': annonce.id}) }}" class="btn btn-outline-secondary mt-2 mb-1">Vérifier mon annonce</a>
                         <form action="{{ path('app_remove_annonce', {'id': annonce.id}) }}" method="post">
     <button type="submit" class="btn btn-outline-danger mt-2 mb-1">Supprimer l'annonce</button>
@@ -29,7 +29,8 @@
             </div>
         {% endfor %}
     </div>
-    <div class="d-flex justify-content-center">
+    <div class="row d-flex justify-content-center">
     <a href="{{ path('app_home')}}" class="btn btn-outline-secondary mt-5 col-4 ms-5">retour a l'accueil</a>
+    
     </div>
 {% endblock %}

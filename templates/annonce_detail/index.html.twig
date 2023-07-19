@@ -16,23 +16,18 @@
         <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">
     <div class="carousel-item active">
-        <img src="{{ asset('uploads/images/' ~ annonce.images.imgUne) }}" class ="img-fluid d-block" alt="image">
+        <img src="{{ asset('uploads/images/' ~ annonce.imgUne) }}" class ="img-fluid d-block" alt="image">
     </div>
     <div class="carousel-item">
-        <img src="{{ asset('uploads/images/' ~ annonce.images.imgDeux) }}" class ="img-fluid d-block" alt="image">
+        <img src="{{ asset('uploads/images/' ~ annonce.imgDeux) }}" class ="img-fluid d-block" alt="image">
     </div>
     <div class="carousel-item">
-        <img src="{{ asset('uploads/images/' ~ annonce.images.imgTrois) }}" class ="img-fluid d-block" alt="image">
+        <img src="{{ asset('uploads/images/' ~ annonce.imgTrois) }}" class ="img-fluid d-block" alt="image">
     </div>
     <div class="carousel-item">
-        <img src="{{ asset('uploads/images/' ~ annonce.images.imgQuatre) }}" class ="img-fluid" alt="image">
+        <img src="{{ asset('uploads/images/' ~ annonce.imgQuatre) }}" class ="img-fluid" alt="image">
     </div>
-    <div class="carousel-item">
-        <img src="{{ asset('uploads/images/' ~ annonce.images.imgCinq) }}" class ="img-fluid" alt="image">
-    </div>
-    <div class="carousel-item">
-        <img src="{{ asset('uploads/images/' ~ annonce.images.imgSix) }}" class ="img-fluid" alt="image">
-    </div>
+    
                 
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
@@ -96,7 +91,8 @@
         </tr>
       </table>
       <div class="d-flex jutify-content-center">
-      <a href="{{path('app_annonces_list')}}" class="text-center btn btnbtn-outline-secondary mt-5">retour a la liste des annonces</a>
+      <a href="{{path('app_annonces_list')}}" class="text-center btn btn-outline-secondary mt-5">retour a la liste des annonces</a>
+     
       </div>
       
         </div>
