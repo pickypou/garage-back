@@ -1,9 +1,9 @@
 # sequence
 
-# sequence création d'annonces
+## sequence création d'annonces
 
+``` mermaid 
 sequenceDiagram
-
     participant AdminEmployés
     participant HTMLTwig
     participant PHPSymfony
@@ -27,3 +27,4 @@ sequenceDiagram
     API -->> PHPSymfony: Données récupérées
     PHPSymfony ->> HTMLTwig: 
     HTMLTwig ->> AdminEmployés: Affichage de l'annonce avec les options
+```
