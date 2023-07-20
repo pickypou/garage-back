@@ -2,7 +2,7 @@
 
 ## sequence d' un commentaire
 
-```mermaid
+``` mermaid
 sequenceDiagram
     actor Admin/Employés
     actor Admin
@@ -10,7 +10,6 @@ sequenceDiagram
     participant PHP/Symfony
     participant API
     participant BDD
-
 Admin/emplyés ->> HTML/Twig: entrée sur le site
 HTML/Twig ->> PHP/Symfony: requet
 API ->> BDD: récupérer les commentaire
