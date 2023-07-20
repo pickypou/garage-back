@@ -4,27 +4,27 @@
 
 ``` mermaid 
 sequenceDiagram
-    actor AdminEmployés
-    participant HTMLTwig
-    participant PHPSymfony
+    actor Admin/Employés
+    participant HTML/Twig
+    participant PHP/Symfony
     participant API
     participant BDD
     
-    AdminEmployés ->> HTMLTwig: Entrée sur le site
-    HTMLTwig ->> PHPSymfony: Requête SQL
-    PHPSymfony ->> API: Envoie les données
-    API ->> BDD: Envoie les données
-    BDD ->> API: Récupérer les données
-    API -->> PHPSymfony: Données récupérées
-    PHPSymfony ->> HTMLTwig: 
-    HTMLTwig ->> AdminEmployés: Affichage de l'annonce
-    
-    AdminEmployés ->> HTMLTwig: Ajout des options
-    HTMLTwig ->> PHPSymfony: Requête SQL
+    Admin/Employés ->> HTML/Twig: Entrée sur le site
+    HTML/Twig ->> PHP/Symfony: Requête SQL
     PHP/Symfony ->> API: Envoie les données
     API ->> BDD: Envoie les données
     BDD ->> API: Récupérer les données
-    API -->> PHPSymfony: Données récupérées
-    PHPSymfony ->> HTMLTwig: 
-    HTMLTwig ->> AdminEmployés: Affichage de l'annonce avec les options
+    API -->> PHP/Symfony: Données récupérées
+    PHP/Symfony ->> HTML/Twig: 
+    HTML/Twig ->> Admin/Employés: Affichage de l'annonce
+    
+    Admin/Employés ->> HTML/Twig: Ajout des options
+    HTML/Twig ->> PHP/Symfony: Requête SQL
+    PHP/Symfony ->> API: Envoie les données
+    API ->> BDD: Envoie les données
+    BDD ->> API: Récupérer les données
+    API -->> PHP/Symfony: Données récupérées
+    PHP/Symfony ->> HTML/Twig: 
+    HTML/Twig ->> Admin/Employés: Affichage de l'annonce avec les options
 ```
