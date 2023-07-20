@@ -1,24 +1,24 @@
 sequenceDiagram
-    participant Admin/Employés
-    participant HTML/twig
-    participant PHP/Symfony
+    participant AdminEmployés
+    participant HTMLTwig
+    participant PHPSymfony
     participant API
     participant BDD
     
-    Admin/Employés ->> HTML/twig: Entrée sur le site
-    HTML/twig ->> PHP/Symfony: Requête SQL
-    PHP/Symfony ->> API: Envoie les données
+    AdminEmployés ->> HTMLTwig: Entrée sur le site
+    HTMLTwig ->> PHPSymfony: Requête SQL
+    PHPSymfony ->> API: Envoie les données
     API ->> BDD: Envoie les données
     BDD ->> API: Récupérer les données
-    API -->> PHP/Symfony: Données récupérées
-    PHP/Symfony ->> HTML/twig: 
-    HTML/twig ->> Admin/Employés: Affichage de l'annonce
+    API -->> PHPSymfony: Données récupérées
+    PHPSymfony ->> HTMLTwig: 
+    HTMLTwig ->> AdminEmployés: Affichage de l'annonce
     
-    Admin/Employés ->> HTML/twig: Ajout des options
-    HTML/twig ->> PHP/Symfony: Requête SQL
+    AdminEmployés ->> HTMLTwig: Ajout des options
+    HTMLTwig ->> PHPSymfony: Requête SQL
     PHP/Symfony ->> API: Envoie les données
     API ->> BDD: Envoie les données
     BDD ->> API: Récupérer les données
-    API -->> PHP/Symfony: Données récupérées
-    PHP/Symfony ->> HTML/twig: 
-    HTML/twig ->> Admin/Employés: Affichage de l'annonce avec les options
+    API -->> PHPSymfony: Données récupérées
+    PHPSymfony ->> HTMLTwig: 
+    HTMLTwig ->> AdminEmployés: Affichage de l'annonce avec les options
