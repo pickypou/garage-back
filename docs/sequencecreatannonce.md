@@ -2,7 +2,7 @@
 
 ## sequence création d'annonces
 
-``` mermaid 
+``` mermaid
 sequenceDiagram
     actor Admin/Employés
     participant HTML/Twig
