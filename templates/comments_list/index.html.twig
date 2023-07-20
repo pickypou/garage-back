@@ -10,13 +10,19 @@
                 <div class="card">
                     <div class="card-body text-center">
                         <h5 class="card-title">{{ comments.title }}</h5>
-                        <p class="card-text"> {{ comment.description }}</p>
-                         <form action="{{ path('app_remove_comments', {'id': annonce.id}) }}" method="post">
-    <button type="submit" class="btn btn-outline-danger mt-2 mb-1">Supprimer l'annonce</button>
+                        <p class="card-text"> {{ comments.description }}</p>
+                         <form action="{{ path('app_remove_comments', {'id': comments.id}) }}" method="post">
+    <button type="submit" class="btn btn-outline-danger mt-2 mb-1">Supprimer le commentaire</button>
 </form>
+ 
+                        </div>
                         </div>
                         </div>
     
 {% endfor %}
  </div>
+ <div class="row d-flex justify-content-center">
+    <a href="{{ path('app_home')}}" class="btn btn-outline-secondary mt-5 col-4 ms-5">retour a l'accueil</a>
+    
+    </div>
 {% endblock %}
