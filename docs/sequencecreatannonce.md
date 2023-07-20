@@ -1,28 +1,24 @@
-# Sequences création annonces
-
-## La création d'une annonce
-
-``` mermaid
 sequenceDiagram
-    actor Admin/Employés
-    partcipant HTML/twig
+    participant Admin/Employés
+    participant HTML/twig
     participant PHP/Symfony
     participant API
     participant BDD
-    Admin/employés ->> HTML/twig: Entrée sur le site
-    HTML/twig ->> PHP/Symfony: requette SQL
-    PHP/Symfony ->> API: Envois les données
-    API ->> BDD: envois le données
+    
+    Admin/Employés ->> HTML/twig: Entrée sur le site
+    HTML/twig ->> PHP/Symfony: Requête SQL
+    PHP/Symfony ->> API: Envoie les données
+    API ->> BDD: Envoie les données
     BDD ->> API: Récupérer les données
-    API -->> PHP/symfony:
-    PHP/symfony ->> HTML/twig: 
-    Html/twig ->> Adlin/employés: affichage de l'annonce
-     Admin/employés ->> HTML/twig: ajout des options
-    HTML/twig ->> PHP/Symfony: requette SQL
-    PHP/Symfony ->> API: Envois les données
-    API ->> BDD: envois le données
+    API -->> PHP/Symfony: Données récupérées
+    PHP/Symfony ->> HTML/twig: 
+    HTML/twig ->> Admin/Employés: Affichage de l'annonce
+    
+    Admin/Employés ->> HTML/twig: Ajout des options
+    HTML/twig ->> PHP/Symfony: Requête SQL
+    PHP/Symfony ->> API: Envoie les données
+    API ->> BDD: Envoie les données
     BDD ->> API: Récupérer les données
-    API -->> PHP/symfony:
-    PHP/symfony ->> HTML/twig: 
-    Html/twig ->> Adlin/employés: affichage de l'annonce avec les options
-```
+    API -->> PHP/Symfony: Données récupérées
+    PHP/Symfony ->> HTML/twig: 
+    HTML/twig ->> Admin/Employés: Affichage de l'annonce avec les options
