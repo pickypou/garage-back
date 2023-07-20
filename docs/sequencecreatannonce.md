@@ -1,4 +1,9 @@
+# sequence
+
+# sequence création d'annonces
+
 sequenceDiagram
+
     participant AdminEmployés
     participant HTMLTwig
     participant PHPSymfony
