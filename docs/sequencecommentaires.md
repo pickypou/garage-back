@@ -4,25 +4,28 @@
 
 ``` mermaid
 sequenceDiagram
-    actor Admin/Employés
     actor Admin
     participant HTML/Twig
     participant PHP/Symfony
     participant API
     participant BDD
-Admin/emplyés ->> HTML/Twig: entrée sur le site
-HTML/Twig ->> PHP/Symfony: requet
-API ->> BDD: récupérer les commentaire
-BDD -->> API: 
-API -->> PHP/Symfony: 
-PHP/Symfony -->>HTML/Twig:
-HTML/Twig ->> Admin/employé: affichage du commentaire
-Admin ->> HTML/Twig: entrée sur le site
-HTML/Twig ->> PHP/Symfony: requet
-API ->> BDD: suppréssion du commentaire
-BDD -->> API: 
-API -->> PHP/Symfony: 
-PHP/Symfony -->>HTML/Twig:
-HTML/Twig ->> Admin: commentaire supprimer
+
+    Admin ->> HTML/Twig: Entré sur le site
+    HTML/Twig ->> PHP/Symfony: requette
+    PHP/Symfony ->> API: récupération des données
+    API ->> BDD: Récupérer les données
+    BDD -->> API: retour des données
+    API -->> PHP/Symfony:  
+    PHP/Symfony -->> HTML/Twig: 
+    HTML/Twig ->> Admin: affichage des commentaires
+
+     Admin ->> HTML/Twig: Entré sur le site
+    HTML/Twig ->> PHP/Symfony: requette
+    PHP/Symfony ->> API: supprimer le commentaire
+    API ->> BDD: supprimer les données
+    BDD -->> API: 
+    API -->> PHP/Symfony:  
+    PHP/Symfony -->> HTML/Twig: 
+    HTML/Twig ->> Admin: commentaires supprimer
 
 ```
