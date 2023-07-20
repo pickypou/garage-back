@@ -4,7 +4,7 @@
 
 ``` mermaid 
 sequenceDiagram
-    participant AdminEmployés
+    actor AdminEmployés
     participant HTMLTwig
     participant PHPSymfony
     participant API
