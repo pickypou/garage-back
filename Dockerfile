@@ -18,8 +18,6 @@ RUN apt-get update \
     libonig-dev \
     libxslt-dev \
     && rm -rf /var/lib/apt/lists/*
-<<<<<<< HEAD
-=======
 
 # Installation de Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -73,4 +71,3 @@ WORKDIR /var/www/html
 
 # Exposition du port 8000 (à adapter si nécessaire)
 EXPOSE 8000
->>>>>>> cb6d560c95747a078ad8d3660ca9a66c2b7b09bf
