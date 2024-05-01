@@ -1,0 +1,50 @@
+version: "3.8"
+services:
+    # MySQL database container
+    db:
+        image: mysql:latest
+        container_name: garage_db
+        restart: always
+        volumes:
+            - db-data:/var/lib/mysql
+        environment:
+            MYSQL_DATABASE: garageparrot
+            MYSQL_ROOT_PASSWORD: your_root_password_here
+            MYSQL_USER: your_mysql_user_here
+            MYSQL_PASSWORD: your_mysql_password_here
+        networks:
+            - garage
+    
+    # phpMyAdmin container
+    phpmyadmin:
+        image: phpmyadmin:latest
+        container_name: garage_phpmyadmin
+        restart: always
+        depends_on:
+            - db
+        ports:
+            - "8080:80"
+        environment:
+            PMA_HOST: db
+        networks:
+            - garage
+
+    # Symfony Apache project container (Back-end)
+    backend:
+        build: ./
+        container_name: garage_backend
+        ports:
+          - "8000:8000"
+        volumes:
+            - .:/var/www/html  # Symfony root directory, adjusted based on your structure
+        restart: always
+        depends_on:
+            - db  # Ensure MySQL is started before Symfony
+        networks:
+            - garage
+
+networks:
+    garage:
+
+volumes:
+    db-data:
