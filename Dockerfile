@@ -18,3 +18,59 @@ RUN apt-get update \
     libonig-dev \
     libxslt-dev \
     && rm -rf /var/lib/apt/lists/*
+<<<<<<< HEAD
+=======
+
+# Installation de Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Installation de Symfony CLI
+RUN curl -sS https://get.symfony.com/cli/installer | bash \
+    && mv /root/.symfony5/bin/symfony /usr/local/bin/symfony
+
+# Copie des fichiers de configuration de l'application
+COPY composer.json /var/www/html
+COPY composer.lock /var/www/html
+
+# Installation des dépendances de l'application avec Composer
+RUN composer install --ignore-platform-reqs --no-scripts \
+    && composer clear-cache
+
+# Configuration des extensions PHP
+RUN docker-php-ext-configure intl \
+    && docker-php-ext-install -j$(nproc) \
+    pdo \
+    pdo_mysql \
+    mysqli \
+    gd \
+    opcache \
+    intl \
+    zip \
+    calendar \
+    dom \
+    mbstring \
+    xsl \
+    && a2enmod rewrite
+
+# Installation et activation de l'extension APCu
+RUN pecl install apcu \
+    && docker-php-ext-enable apcu
+
+# Installation d'autres extensions PHP via un script externe
+ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+RUN chmod +x /usr/local/bin/install-php-extensions \
+    && sync \
+    && install-php-extensions amqp
+
+# Copier le script de démarrage dans le conteneur
+COPY docker-entrypoint.sh /usr/local/bin/
+
+# Donner les permissions d'exécution au script
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+# Définition du répertoire de travail
+WORKDIR /var/www/html
+
+# Exposition du port 8000 (à adapter si nécessaire)
+EXPOSE 8000
+>>>>>>> cb6d560c95747a078ad8d3660ca9a66c2b7b09bf
