@@ -26,14 +26,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN curl -sS https://get.symfony.com/cli/installer | bash \
     && mv /root/.symfony5/bin/symfony /usr/local/bin/symfony
 
-# Copie des fichiers de configuration de l'application
-COPY composer.json /var/www/html
-COPY composer.lock /var/www/html
-
-# Installation des dépendances de l'application avec Composer
-RUN composer install --ignore-platform-reqs --no-scripts \
-    && composer clear-cache
-
 # Configuration des extensions PHP
 RUN docker-php-ext-configure intl \
     && docker-php-ext-install -j$(nproc) \
@@ -62,6 +54,7 @@ RUN chmod +x /usr/local/bin/install-php-extensions \
 
 # Copier le script de démarrage dans le conteneur
 COPY docker-entrypoint.sh /usr/local/bin/
+COPY . /var/www/html
 
 # Donner les permissions d'exécution au script
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
@@ -71,3 +64,5 @@ WORKDIR /var/www/html
 
 # Exposition du port 8000 (à adapter si nécessaire)
 EXPOSE 8000
+
+ENTRYPOINT [ "sh", "/usr/local/bin/docker-entrypoint.sh" ]
