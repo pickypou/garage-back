@@ -1,6 +1,9 @@
 # sequence commentaires
 
 ## sequence d' un commentaire
+---
+title: sequence commentaires
+---
 
 ``` mermaid
 sequenceDiagram

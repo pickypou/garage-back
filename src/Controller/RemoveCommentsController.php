@@ -26,6 +26,10 @@ class RemoveCommentsController extends AbstractController
 
         $this->entityManager->remove($removeComment);
         $this->entityManager->flush();
-        return $this->render('remove_comments/index.html.twig');
+        
+        $this->addFlash('success', 'Le commantaire à était supprimé avec succé ');
+
+        // Rediriger directement vers la liste des commentaires après la suppression
+        return $this->redirectToRoute('app_comments_list');
     }
 }

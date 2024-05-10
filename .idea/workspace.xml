@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d2aba31-aa8a-49e7-a7ef-37c3c5a56780" name="Changes" comment="" />
+    <list default="true" id="7d2aba31-aa8a-49e7-a7ef-37c3c5a56780" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/RemoveAnnonceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RemoveAnnonceController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/RemoveCommentsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RemoveCommentsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/remove_comments/index.html.twig" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,11 +38,13 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "F:/mes_projets/garage-automobile-back et front",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/ludo/developpement/garage-back",
     "settings.editor.selected.configurable": "AndroidSdkUpdater",
     "show.migrate.to.gradle.popup": "false"
   }

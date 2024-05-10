@@ -47,10 +47,16 @@ class CreateAnnoncesType extends AbstractType
                 'Toyota' => 'Toyota',
                 'Volkswagen' => 'Volkswagen',
                 'Volvo' => 'Volvo',
+            ],  
+            'row_attr' => [
+                'class' => 'row mb-3'
             ]
         ])
         ->add('model', TextType::class, [
-            'label' => 'Model'
+            'label' => 'Model',
+            'row_attr' => [
+                'class' => 'row mb-3'
+            ]
         ])
         ->add('price', TextType::class, [
             'label' => 'Prix'

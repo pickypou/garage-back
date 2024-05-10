@@ -27,6 +27,7 @@ class RemoveAnnonceController extends AbstractController
 
         $this->entityManager->remove($annonceRemove);
         $this->entityManager->flush();
+        $this->addFlash('success', 'L\'annonce à était supprimé avec succé ');
 
         return $this->redirectToRoute('app_annonces_list');
     }

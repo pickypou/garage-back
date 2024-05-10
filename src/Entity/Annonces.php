@@ -11,16 +11,12 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Get;
 
-
-
 #[ORM\Entity(repositoryClass: AnnoncesRepository::class)]
 #[ApiResource(
     operations:[
         new Get(),
         new GetCollection(),
-       
     ]
-   
 )]
 class Annonces
 {
@@ -80,7 +76,14 @@ class Annonces
     #[ORM\Column(length: 255)]
     private ?string $imgQuatre = null;
 
-    
+    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\JoinColumn(name: "created_by_id", referencedColumnName: "id")]
+    private ?User $createdBy = null;
+
+    public function __construct(?User $createdBy = null)
+    {
+        $this->createdBy = $createdBy;
+    }
 
     public function getId(): ?int
     {
@@ -92,7 +95,7 @@ class Annonces
         return $this->title;
     }
 
-    public function setTitle(string $title): static
+    public function setTitle(string $title): self
     {
         $this->title = $title;
 
@@ -104,7 +107,7 @@ class Annonces
         return $this->brand;
     }
 
-    public function setBrand(string $brand): static
+    public function setBrand(string $brand): self
     {
         $this->brand = $brand;
 
@@ -116,7 +119,7 @@ class Annonces
         return $this->model;
     }
 
-    public function setModel(string $model): static
+    public function setModel(string $model): self
     {
         $this->model = $model;
 
@@ -128,7 +131,7 @@ class Annonces
         return $this->price;
     }
 
-    public function setPrice(string $price): static
+    public function setPrice(string $price): self
     {
         $this->price = $price;
 
@@ -140,7 +143,7 @@ class Annonces
         return $this->mileage;
     }
 
-    public function setMileage(string $mileage): static
+    public function setMileage(string $mileage): self
     {
         $this->mileage = $mileage;
 
@@ -152,7 +155,7 @@ class Annonces
         return $this->year;
     }
 
-    public function setYear(string $year): static
+    public function setYear(string $year): self
     {
         $this->year = $year;
 
@@ -164,7 +167,7 @@ class Annonces
         return $this->fuel;
     }
 
-    public function setFuel(string $fuel): static
+    public function setFuel(string $fuel): self
     {
         $this->fuel = $fuel;
 
@@ -176,7 +179,7 @@ class Annonces
         return $this->description;
     }
 
-    public function setDescription(string $description): static
+    public function setDescription(string $description): self
     {
         $this->description = $description;
 
@@ -188,7 +191,7 @@ class Annonces
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
 
@@ -200,7 +203,7 @@ class Annonces
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 
@@ -212,7 +215,7 @@ class Annonces
         return $this->slug;
     }
 
-    public function setSlug(string $slug): static
+    public function setSlug(string $slug): self
     {
         $this->slug = $slug;
 
@@ -224,7 +227,7 @@ class Annonces
         return $this->options;
     }
 
-    public function setOptions(Options $options): static
+    public function setOptions(Options $options): self
     {
         // set the owning side of the relation if necessary
         if ($options->getAnnonce() !== $this) {
@@ -241,7 +244,7 @@ class Annonces
         return $this->imgUne;
     }
 
-    public function setImgUne(string $imgUne): static
+    public function setImgUne(string $imgUne): self
     {
         $this->imgUne = $imgUne;
 
@@ -253,7 +256,7 @@ class Annonces
         return $this->imgDeux;
     }
 
-    public function setImgDeux(string $imgDeux): static
+    public function setImgDeux(string $imgDeux): self
     {
         $this->imgDeux = $imgDeux;
 
@@ -265,7 +268,7 @@ class Annonces
         return $this->imgTrois;
     }
 
-    public function setImgTrois(string $imgTrois): static
+    public function setImgTrois(string $imgTrois): self
     {
         $this->imgTrois = $imgTrois;
 
@@ -277,13 +280,22 @@ class Annonces
         return $this->imgQuatre;
     }
 
-    public function setImgQuatre(string $imgQuatre): static
+    public function setImgQuatre(string $imgQuatre): self
     {
         $this->imgQuatre = $imgQuatre;
 
         return $this;
     }
 
-    
-       
+    public function getCreatedBy(): ?User
+    {
+        return $this->createdBy;
+    }
+
+    public function setCreatedBy(?User $createdBy): self
+    {
+        $this->createdBy = $createdBy;
+
+        return $this;
+    }      
 }
