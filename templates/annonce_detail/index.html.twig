@@ -1,34 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{annonce.slug}}{% endblock %}
+{% block title %}{{ annonce.slug }}{% endblock %}
 
 {% block body %}
-    <h1 class="text-center mt-5 mb-5">{{annonce.title}}</h1>
+    <h1 class="text-center mt-5 mb-5">{{ annonce.title }}</h1>
      
+    {% if is_granted('ROLE_ADMIN') %}
+        <p>Cette annonce a été mise en ligne par : {{ employe.firstname }} {{ employe.lastname }}</p>
+    {% endif %}
 
     <div class="card mx-auto" style="width: 40rem;">
-    <style>
-    .carousel-item img {
-        width: 100%;
-        height: auto;
-    }
-</style>
+        <style>
+            .carousel-item img {
+                width: 100%;
+                height: auto;
+            }
+        </style>
         <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">
-    <div class="carousel-item active">
-        <img src="{{ asset('uploads/images/' ~ annonce.imgUne) }}" class ="img-fluid d-block" alt="image">
-    </div>
-    <div class="carousel-item">
-        <img src="{{ asset('uploads/images/' ~ annonce.imgDeux) }}" class ="img-fluid d-block" alt="image">
-    </div>
-    <div class="carousel-item">
-        <img src="{{ asset('uploads/images/' ~ annonce.imgTrois) }}" class ="img-fluid d-block" alt="image">
-    </div>
-    <div class="carousel-item">
-        <img src="{{ asset('uploads/images/' ~ annonce.imgQuatre) }}" class ="img-fluid" alt="image">
-    </div>
-    
-                
+                <div class="carousel-item active">
+                    <img src="{{ asset('uploads/images/' ~ annonce.imgUne) }}" class="img-fluid d-block" alt="image">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ asset('uploads/images/' ~ annonce.imgDeux) }}" class="img-fluid d-block" alt="image">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ asset('uploads/images/' ~ annonce.imgTrois) }}" class="img-fluid d-block" alt="image">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ asset('uploads/images/' ~ annonce.imgQuatre) }}" class="img-fluid" alt="image">
+                </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -39,66 +40,59 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
-        <h2 class="text-center"> Pirx: {{ annonce.price }} €</h2>
+        <h2 class="text-center"> Prix: {{ annonce.price }} €</h2>
         <h3 class="text-center">Année: {{ annonce.year }}</h3>
         <div class="card-body">
-       <p class="card-text">REF: {{ annonce.id }}</p>
-         <p class="card-text">{{ annonce.description }}</p>
-          <div class="row">
-        <div class="mx-auto">
-        <table class="table table-bordered border-secondary text-center">
-        <tr>
-        <td>Marque</td>
-        <td>{{ annonce.brand }}</td>
-        <td>Model</td>
-        <td>{{ annonce.model }}</td>
-        </tr>
+            <p class="card-text">REF: {{ annonce.id }}</p>
+            <p class="card-text">{{ annonce.description }}</p>
+            <div class="row">
+                <div class="mx-auto">
+                    <table class="table table-bordered border-secondary text-center">
+                        <tr>
+                            <td>Marque</td>
+                            <td>{{ annonce.brand }}</td>
+                            <td>Model</td>
+                            <td>{{ annonce.model }}</td>
+                        </tr>
+                        <tr>
+                            <td>Carburant</td>
+                            <td>{{ annonce.fuel }}</td>
+                            <td>Kilomètre</td>
+                            <td>{{ annonce.mileage }} KM</td>
+                        </tr>
+                    </table>
 
-         <tr>
-        <td>Carburent</td>
-        <td>{{ annonce.fuel }}</td>
-        <td>Kilométre</td>
-        <td>{{ annonce.mileage }} KM</td>
-        </tr>
-        </table>
-
-         <table class="table table-bordered border-secondary text-center">
-        <tr>
-        <td>GPS</td>
-        <td>{{ annonce.options.gps }}</td>
-        <td>Climatisation</td>
-        <td>{{ annonce.options.clim}} </td>
-        <td>Bluetooth</td>
-        <td>{{ annonce.options.bluetooth}} </td>
-        </tr>
-
-        <tr>
-         <td>Régulateur</td>
-        <td>{{ annonce.options.regulateur }}</td>
-        <td>Limitateur</td>
-        <td>{{ annonce.options.limitateur}} </td>
-         <td>Système freinage d'urgence</td>
-        <td>{{ annonce.options.sfu}} </td>
-        </tr>
-
-         <tr>
-         <td>Système d'aide à la conduite</td>
-        <td>{{ annonce.options.sac }}</td>
-        <td>Caméra de recul</td>
-        <td>{{ annonce.options.camera}} </td>
-         <td>aide au stationnement</td>
-        <td>{{ annonce.options.sas}} </td>
-        </tr>
-      </table>
-      <div class="d-flex jutify-content-center">
-      <a href="{{path('app_annonces_list')}}" class="text-center btn btn-outline-secondary mt-5">retour a la liste des annonces</a>
-     
-      </div>
-      
+                    <table class="table table-bordered border-secondary text-center">
+                        <tr>
+                            <td>GPS</td>
+                            <td>{{ annonce.options.gps }}</td>
+                            <td>Climatisation</td>
+                            <td>{{ annonce.options.clim }}</td>
+                            <td>Bluetooth</td>
+                            <td>{{ annonce.options.bluetooth }}</td>
+                        </tr>
+                        <tr>
+                            <td>Régulateur</td>
+                            <td>{{ annonce.options.regulateur }}</td>
+                            <td>Limiteur</td>
+                            <td>{{ annonce.options.limitateur }}</td>
+                            <td>Système freinage d'urgence</td>
+                            <td>{{ annonce.options.sfu }}</td>
+                        </tr>
+                        <tr>
+                            <td>Système d'aide à la conduite</td>
+                            <td>{{ annonce.options.sac }}</td>
+                            <td>Caméra de recul</td>
+                            <td>{{ annonce.options.camera }}</td>
+                            <td>Aide au stationnement</td>
+                            <td>{{ annonce.options.sas }}</td>
+                        </tr>
+                    </table>
+                    <div class="d-flex justify-content-center">
+                        <a href="{{ path('app_annonces_list') }}" class="text-center btn btn-outline-secondary mt-5">Retour à la liste des annonces</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-
-    </div>
-   
 {% endblock %}

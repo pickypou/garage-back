@@ -1,6 +1,12 @@
 <?php
+namespace App\Entity;
 
-use App\Entity\Annonces; // Assurez-vous d'importer la classe Annonces si ce n'est pas déjà fait
+use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
@@ -17,6 +23,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private array $roles = [];
 
+    /**
+     * @var string The hashed password
+     */
     #[ORM\Column]
     private ?string $password = null;
 
@@ -26,40 +35,132 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $lastname = null;
 
-    #[ORM\OneToMany(targetEntity: Annonces::class, mappedBy: 'createdBy')]
-    private $createdAnnonces;
+    #[ORM\OneToMany(mappedBy: 'employe', targetEntity: Annonces::class)]
+    private Collection $annonces;
 
     public function __construct()
     {
-        $this->createdAnnonces = new ArrayCollection();
+        $this->annonces = new ArrayCollection();
     }
 
-    // Getters and setters for id, email, roles, password, firstname, and lastname...
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): static
+    {
+        $this->email = $email;
+
+        return $this;
+    }
 
     /**
-     * @return Collection|Annonces[]
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
      */
-    public function getCreatedAnnonces(): Collection
+    public function getUserIdentifier(): string
     {
-        return $this->createdAnnonces;
+        return (string) $this->email;
     }
 
-    public function addCreatedAnnonce(Annonces $annonce): self
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
     {
-        if (!$this->createdAnnonces->contains($annonce)) {
-            $this->createdAnnonces[] = $annonce;
-            $annonce->setCreatedBy($this);
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_PERSONNEL';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): static
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): static
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials(): void
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+    }
+
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
+
+    public function setFirstname(string $firstname): static
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    public function getLastname(): ?string
+    {
+        return $this->lastname;
+    }
+
+    public function setLastname(string $lastname): static
+    {
+        $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Annonces>
+     */
+    public function getAnnonces(): Collection
+    {
+        return $this->annonces;
+    }
+
+    public function addAnnonce(Annonces $annonce): static
+    {
+        if (!$this->annonces->contains($annonce)) {
+            $this->annonces->add($annonce);
+            $annonce->setEmploye($this);
         }
 
         return $this;
     }
 
-    public function removeCreatedAnnonce(Annonces $annonce): self
+    public function removeAnnonce(Annonces $annonce): static
     {
-        if ($this->createdAnnonces->removeElement($annonce)) {
+        if ($this->annonces->removeElement($annonce)) {
             // set the owning side to null (unless already changed)
-            if ($annonce->getCreatedBy() === $this) {
-                $annonce->setCreatedBy(null);
+            if ($annonce->getEmploye() === $this) {
+                $annonce->setEmploye(null);
             }
         }
 

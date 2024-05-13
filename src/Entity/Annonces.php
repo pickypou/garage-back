@@ -11,6 +11,8 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Get;
 
+
+
 #[ORM\Entity(repositoryClass: AnnoncesRepository::class)]
 #[ApiResource(
     operations:[
@@ -76,14 +78,13 @@ class Annonces
     #[ORM\Column(length: 255)]
     private ?string $imgQuatre = null;
 
-    #[ORM\ManyToOne(targetEntity: User::class)]
-    #[ORM\JoinColumn(name: "created_by_id", referencedColumnName: "id")]
-    private ?User $createdBy = null;
+    #[ORM\ManyToOne(inversedBy: 'annonces')]
+    private ?User $employe = null;
 
-    public function __construct(?User $createdBy = null)
-    {
-        $this->createdBy = $createdBy;
-    }
+    
+   
+
+   
 
     public function getId(): ?int
     {
@@ -287,15 +288,17 @@ class Annonces
         return $this;
     }
 
-    public function getCreatedBy(): ?User
+    public function getEmploye(): ?User
     {
-        return $this->createdBy;
+        return $this->employe;
     }
 
-    public function setCreatedBy(?User $createdBy): self
+    public function setEmploye(?User $employe): static
     {
-        $this->createdBy = $createdBy;
+        $this->employe = $employe;
 
         return $this;
-    }      
+    }
+
+   
 }

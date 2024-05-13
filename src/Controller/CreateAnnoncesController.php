@@ -11,22 +11,28 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use Symfony\Component\Security\Core\Security;
 
 
 class CreateAnnoncesController extends AbstractController
 {
     private $entityManager;
     private $imagesDirectory;
+    private Security $security;
 
-    public function __construct(EntityManagerInterface $entityManager, ParameterBagInterface $parameterBag)
+    public function __construct(EntityManagerInterface $entityManager, ParameterBagInterface $parameterBag, Security $security)
     {
         $this->entityManager = $entityManager;
         $this->imagesDirectory = $parameterBag->get('images_directory');
+        $this->security = $security;
     }
     #[Route('/create/annonces', name: 'app_create_annonces')]
     public function index(Request $request, UploaderService $uploaderService,): Response
     {
+        //Récupérer l'utilisateur actuellement connecter
+        $user = $this->security->getUser();
         $annonce = new Annonces();
+        $annonce->setEmploye($user);
 
         $annonceForm = $this->createForm(CreateAnnoncesType::class,$annonce);
 

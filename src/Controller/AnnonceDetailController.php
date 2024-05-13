@@ -17,8 +17,15 @@ class AnnonceDetailController extends AbstractController
     {
         $annonceDetail = $doctrine->getRepository(Annonces::class)->find($id);
 
+        // Récupérer l'employé qui à créé cette annonce
+        $employe = $annonceDetail->getEmploye();
+
+        // Vérifier si l'utilisateur est un administrateur
+        $isAdmin = $this->isGranted('ROLE_ADMIN');
+
         return $this->render('annonce_detail/index.html.twig', [
             'annonce' => $annonceDetail,
+            'employe' => $isAdmin ? $employe : null, // Passer l'objet employe uniquement si l'utilisateur est un administrateur
         ]);
     }
 }
