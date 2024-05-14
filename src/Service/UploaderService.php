@@ -5,12 +5,17 @@ namespace App\Service;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\Filesystem\Filesystem;
 
 class UploaderService
 {
     // On va lui passer un objet de type UploadedFile
     // Et elle doit nous retourner le nom de ce file
-    public function __construct(private SluggerInterface $slugger) {}
+    private $filesystem;
+    public function __construct(private SluggerInterface $slugger, Filesystem $filesystem)
+     {
+        $this->filesystem = $filesystem;
+     }
     public function uploadFile(
         UploadedFile $file,
         string $directoryFolder
@@ -30,5 +35,15 @@ class UploaderService
             // ... handle exception if something happens during file upload
         }
         return $newFilename;
+    }
+    public function removeFile(string $fileName, string $directoryFolder)
+    {
+        // Construction du chemin complet du fichier à supprimer
+        $filePath = $directoryFolder.'/'.$fileName;
+
+        // Vérifier si le fichier existe avant de tenter de le supprimer
+        if ($this->filesystem->exists($filePath)) {
+            $this->filesystem->remove($filePath);
+        }
     }
 }
