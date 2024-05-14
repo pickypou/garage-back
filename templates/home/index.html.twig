@@ -25,9 +25,11 @@
     {# L'utilisateur n'est pas connecté #}
     <a href="{{ path('app_login') }}" class="btn btn-outline-secondary">Connexion</a>
 {% endif %}
-{% if is_granted("ROLE_ADMIN") %}
+{% if is_granted("ROLE_ADMIN") %} 
+<a href="{{ path('app_comments_list')}}" class="btn btn-outline-secondary">voir les commantaires</a>
     <a href="{{ path('app_register')}}" class="btn btn-outline-secondary">Je crée un compte</a>
-      <a href="{{ path('app_comments_list')}}" class="btn btn-outline-secondary">voir les commantaires</a>
+       <a href="{{ path('app_user_list')}}" class="btn btn-outline-secondary">Liste des employés</a>
+     
 {% endif %}
 
 

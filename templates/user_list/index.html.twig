@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des employés
+{% endblock %}
+
+{% block body %}
+	<h1 class="mt-5 mb-5 text-center">Liste des employés avec un compte</h1>
+
+
+	<div class="container">
+		<div class="row">
+			<div class=" row col-md-12 ">
+
+
+				<table class="table" table-striped>
+					<thead>
+						<tr>
+							<th scope="col">Nom</th>
+							<th scope="col">Prénom</th>
+							<th scope="col">email</th>
+							<th scope="col">supprimer</th>
+						</tr>
+					</thead>
+					{% for user in users %}
+						<tbody>
+							<th scope="row">{{user.firstname}}</th>
+							<th>{{user.lastname}}</th>
+							<th>{{user.email}}</th>
+							<td>
+								<a href="{{ path('app_remove_user', {'id': user.id}) }}" class="btn btn-danger btn-sm">
+									<i class="bi bi-trash"></i>
+									<!-- Icône de la poubelle -->
+								</a>
+							</td>
+						{% endfor %}
+					</tbody>
+
+				</table>
+
+			</div>
+		</div>
+
+	</div>
+	<div class="row d-flex justify-content-center">
+		<a href="{{ path('app_home')}}" class="btn btn-outline-secondary mt-5 col-4 ms-5">retour a l'accueil</a>
+
+	</div>
+{% endblock %}
