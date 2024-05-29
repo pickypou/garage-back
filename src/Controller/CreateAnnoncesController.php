@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Controller;
 
 use App\Entity\Annonces;
@@ -11,46 +10,45 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
-use Symfony\Component\Security\Core\Security;
-
 
 class CreateAnnoncesController extends AbstractController
 {
     private $entityManager;
     private $imagesDirectory;
-    private Security $security;
 
-    public function __construct(EntityManagerInterface $entityManager, ParameterBagInterface $parameterBag, Security $security)
+    public function __construct(EntityManagerInterface $entityManager, ParameterBagInterface $parameterBag, )
     {
         $this->entityManager = $entityManager;
         $this->imagesDirectory = $parameterBag->get('images_directory');
-        $this->security = $security;
     }
+
     #[Route('/create/annonces', name: 'app_create_annonces')]
-    public function index(Request $request, UploaderService $uploaderService,): Response
+    public function index(Request $request, UploaderService $uploaderService): Response
     {
-        //Récupérer l'utilisateur actuellement connecter
-        $user = $this->security->getUser();
+        // Récupérer l'utilisateur actuellement connecté
+        $user = $this->getUser();
+        if (!$user) {
+            throw $this->createAccessDeniedException();
+        }
+
         $annonce = new Annonces();
         $annonce->setEmploye($user);
 
-        $annonceForm = $this->createForm(CreateAnnoncesType::class,$annonce);
+        $annonceForm = $this->createForm(CreateAnnoncesType::class, $annonce);
 
         $annonceForm->remove('createdAt');
         $annonceForm->remove('updatedAt');
         $annonceForm->remove('slug');
         $annonceForm->remove('options');
-       
 
         $annonceForm->handleRequest($request);
- 
+
         if ($annonceForm->isSubmitted() && $annonceForm->isValid()) {
             $imgUne = $annonceForm->get('imgUne')->getData();
             $imgDeux = $annonceForm->get('imgDeux')->getData();
             $imgTrois = $annonceForm->get('imgTrois')->getData();
             $imgQuatre = $annonceForm->get('imgQuatre')->getData();
 
-                
             if ($imgUne) {
                 $annonce->setimgUne($uploaderService->uploadFile($imgUne, $this->imagesDirectory));
             }
@@ -63,14 +61,15 @@ class CreateAnnoncesController extends AbstractController
             if ($imgQuatre) {
                 $annonce->setImgQuatre($uploaderService->uploadFile($imgQuatre, $this->imagesDirectory));
             }
+
             $annonce = $annonceForm->getData();
 
             $this->entityManager->persist($annonce);
             $this->entityManager->flush();
 
             return $this->redirectToRoute('app_home');
-
         }
+
         return $this->render('create_annonces/index.html.twig', [
             'annonceForm' => $annonceForm->createView()
         ]);
