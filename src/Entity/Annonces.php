@@ -1,4 +1,5 @@
 <?php
+// src/Entity/Annonces.php
 
 namespace App\Entity;
 
@@ -6,85 +7,99 @@ use App\Repository\AnnoncesRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Gedmo\Mapping\Annotation\slug;
+use Gedmo\Mapping\Annotation\Slug;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Get;
-
-
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: AnnoncesRepository::class)]
 #[ApiResource(
     operations:[
         new Get(),
         new GetCollection(),
-    ]
+    ],
+    normalizationContext: ['groups' => ['annonce']],
+    denormalizationContext: ['groups' => ['annonce']]
 )]
 class Annonces
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(["annonce"])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["annonce"])]
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["annonce"])]
     private ?string $brand = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["annonce"])]
     private ?string $model = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["annonce"])]
     private ?string $price = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["annonce"])]
     private ?string $mileage = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["annonce"])]
     private ?string $year = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["annonce"])]
     private ?string $fuel = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups(["annonce"])]
     private ?string $description = null;
 
     #[ORM\Column]
     #[Gedmo\Timestampable(on: 'create')]
+    #[Groups(["annonce"])]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column]
     #[Gedmo\Timestampable(on: 'update')]
+    #[Groups(["annonce"])]
     private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\Column(length: 255)]
     #[Gedmo\Slug(fields: ['title'])]
+    #[Groups(["annonce"])]
     private ?string $slug = null;
 
     #[ORM\OneToOne(mappedBy: 'annonce', cascade: ['persist', 'remove'])]
+    #[Groups(["annonce"])]
     private ?Options $options = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["annonce"])]
     private ?string $imgUne = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["annonce"])]
     private ?string $imgDeux = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["annonce"])]
     private ?string $imgTrois = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["annonce"])]
     private ?string $imgQuatre = null;
 
     #[ORM\ManyToOne(inversedBy: 'annonces')]
+    #[Groups(["annonce"])]
     private ?User $employe = null;
-
-    
-   
-
-   
 
     public function getId(): ?int
     {
@@ -299,6 +314,4 @@ class Annonces
 
         return $this;
     }
-
-   
 }

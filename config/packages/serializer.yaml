@@ -1,0 +1,7 @@
+# config/packages/serializer.yaml
+
+framework:
+    serializer:
+        default_context:
+            groups: ['annonce']
+            enable_max_depth: true

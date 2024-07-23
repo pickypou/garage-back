@@ -2,12 +2,10 @@ version: "3.8"
 services:
     # MySQL database container
     garage_db:
-        image: mysql:latest
+        image: mysql:8.4
         container_name: garage_db
         command: --mysql-native-password=ON
         restart: always
-        volumes:
-            - db-data:/var/lib/mysql
         environment:
             MYSQL_DATABASE: garage
             MYSQL_ROOT_PASSWORD: garage_pwd
@@ -53,5 +51,3 @@ services:
 networks:
     garage:
 
-volumes:
-    db-data:
